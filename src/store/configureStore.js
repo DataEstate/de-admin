@@ -6,7 +6,7 @@ import rootReducer from './reducers';
 const loggerMiddleware = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default function configureStore(preloadedState) {
+export const configureStore=(preloadedState)=>{
   return createStore(
     rootReducer,
     preloadedState,
@@ -15,3 +15,4 @@ export default function configureStore(preloadedState) {
     )
   )
 }
+export default configureStore;

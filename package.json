@@ -1,11 +1,8 @@
 {
-  "name": "de-redux-boiler-plate",
+  "name": "de-admin",
   "version": "1.0.0",
   "description": "Boiler plate for react-redux projects. ",
   "main": "index.js",
-  "bin": {
-    "de-redux-boiler-plate": "./index.js"
-  },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",

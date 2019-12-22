@@ -2,16 +2,16 @@
 
 import React from "react";
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
-import { MenuIcon } from "@material-ui/icons/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
 
 type HeaderBarProps = {
   position: string,
-  onMenuToggle: (e: any) => void
+  onHeaderNavToggle: (e: any) => void
 };
 
 export const HeaderBar: HeaderBarProps = ({
   position = "fixed",
-  onMenuToggle,
+  onHeaderNavToggle,
   ...props
 }) => {
   return (
@@ -20,9 +20,11 @@ export const HeaderBar: HeaderBarProps = ({
         <IconButton
           color="inherit"
           aria-label="open drawer"
-          onClick={onMenuToggle}
+          onClick={onHeaderNavToggle}
           edge="start"
-        />
+        >
+          <MenuIcon />
+        </IconButton>
         <Typography variant="h6">Test Title</Typography>
       </Toolbar>
     </AppBar>

@@ -68,14 +68,17 @@ export const App = ({ id }: AppProps) => {
   return (
     <div className={classnames("App", classes.root)}>
       <CssBaseline />
-      <HeaderBar className={classes.appBar} position="fixed" />
+      <HeaderBar
+        className={classes.appBar}
+        position="fixed"
+        onHeaderNavToggle={handleDrawerOpen}
+      />
       <NavigationBar
-        className={classnames("App_navigation", classes.drawer)}
+        className="App_navigation"
         open={open}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
+        variant="persistent"
+        navBarWidth={drawerWidth}
+        onNavBarToggle={handleDrawerClose}
       />
       <main className={classnames("App_content", classes.content)}>
         Main Content asdfasdfasdf asdfasdf

@@ -7,36 +7,82 @@ import {
   List,
   ListItem,
   ListItemText,
+  IconButton,
   useTheme,
   makeStyles
 } from "@material-ui/core";
+import {
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon
+} from "@material-ui/icons";
 
 type Props = {
   className?: string,
-  variant: string,
-  classes: {}
+  variant: "permanent" | "persistent" | "temporary",
+  navBarWidth: number,
+  open: boolean,
+  onNavBarToggle: (e: any) => void
 };
+// @reference - https://material-ui.com/styles/basics/#hook-api
+const useStyles = makeStyles(theme => ({
+  drawer: ({ navBarWidth }) => ({
+    width: navBarWidth,
+    flexShrink: 0
+  }),
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end"
+  },
+  drawerPaper: ({ navBarWidth }) => ({
+    width: navBarWidth
+  })
+}));
 
 export const NavigationBar = ({
   className,
   variant = "persistent",
-  classes
+  open = true,
+  navBarWidth = 240,
+  onNavBarToggle
 }: Props) => {
+  const theme = useTheme();
+  const classes = useStyles({
+    navBarWidth
+  });
+  const childComponentClasses = {
+    paper: classes.drawerPaper
+  };
+
   return (
-    <nav className="NavigationBar">
+    <div className="NavigationBar">
       <Drawer
         anchor="left"
         variant={variant}
-        className={className}
-        classes={classes}
+        className={classnames("NavigationBar__drawer", className)}
+        open={open}
+        classes={childComponentClasses}
       >
-        <List>
-          <ListItem>
-            <ListItemText>Menu Item 1</ListItemText>
-          </ListItem>
-        </List>
+        <header className={classes.drawerHeader}>
+          <IconButton onClick={onNavBarToggle}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </header>
+        <nav className="NavigationBar__nav">
+          <List>
+            <ListItem>
+              <ListItemText>Menu Item 1</ListItemText>
+            </ListItem>
+          </List>
+        </nav>
       </Drawer>
-    </nav>
+    </div>
   );
 };
 export default NavigationBar;

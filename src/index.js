@@ -1,19 +1,25 @@
-import 'babel-polyfill';
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import "babel-polyfill";
+import React from "react";
+import { render } from "react-dom";
+import { Provider as ReduxProvider } from "react-redux";
+import { configureStore } from "./store";
 
-import { configureStore } from './store';
-import { App } from './views';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-const appContainer = document.getElementById('root');
+import { App } from "./views";
+import { dataEstateTheme } from "./themes/dataEstateTheme";
+
+const appContainer = document.getElementById("root");
 const store = configureStore({
   appName: "Data Estate Boiler Plate"
 });
+const theme = createMuiTheme(dataEstateTheme);
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>, 
+  <ThemeProvider theme={theme}>
+    <ReduxProvider store={store}>
+      <App />
+    </ReduxProvider>
+  </ThemeProvider>,
   appContainer
 );

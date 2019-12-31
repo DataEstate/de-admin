@@ -16,9 +16,11 @@ import {
   ChevronRight as ChevronRightIcon
 } from "@material-ui/icons";
 
+import type { NavigationVariantType } from "./Types/NavigationVariantType";
+
 type Props = {
   className?: string,
-  variant: "permanent" | "persistent" | "temporary",
+  variant: NavigationVariantType,
   navBarWidth: number,
   open: boolean,
   onNavBarToggle: (e: any) => void

@@ -32,9 +32,15 @@ const useStyles = makeStyles(theme => {
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
-      }),
+      })
+    },
+    appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
     },
     drawer: {
       width: drawerWidth,
@@ -47,7 +53,18 @@ const useStyles = makeStyles(theme => {
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(3)
+      padding: theme.spacing(3),
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen
+      })
+    },
+    contentShift: {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      }),
+      marginLeft: drawerWidth
     }
   };
 });
@@ -69,7 +86,9 @@ export const App = ({ id }: AppProps) => {
     <div className={classnames("App", classes.root)}>
       <CssBaseline />
       <HeaderBar
-        className={classes.appBar}
+        className={classnames(classes.appBar, {
+          [classes.appBarShift]: open
+        })}
         position="fixed"
         onHeaderNavToggle={handleDrawerOpen}
       />
@@ -80,7 +99,12 @@ export const App = ({ id }: AppProps) => {
         navBarWidth={drawerWidth}
         onNavBarToggle={handleDrawerClose}
       />
-      <main className={classnames("App_content", classes.content)}>
+      <main
+        className={classnames("App_content", classes.content, {
+          [classes.contentShift]: open
+        })}
+      >
+        <div className={classes.toolbar} />
         Main Content asdfasdfasdf asdfasdf
       </main>
       <FooterBar />

@@ -1,21 +1,65 @@
 // @flow
 
 import React from "react";
-import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
+import classnames from "classnames";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  makeStyles
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+
+import type { NavigationVariantType } from "./Types/NavigationVariantType";
 
 type HeaderBarProps = {
   position: string,
+  variant: NavigationVariantType,
+  navBarWidth: number,
+  navBarOpen: boolean,
+  className: string,
   onHeaderNavToggle: (e: any) => void
 };
 
-export const HeaderBar: HeaderBarProps = ({
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  appBarShift: ({ navBarWidth }) => ({
+    width: `calc(100% - ${navBarWidth}px)`,
+    marginLeft: navBarWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  })
+}));
+
+export const HeaderBar = ({
   position = "fixed",
   onHeaderNavToggle,
-  ...props
-}) => {
+  navBarWidth = 240,
+  navBarOpen = false,
+  className
+}: HeaderBarProps) => {
+  const classes = makeStyles({
+    navBarWidth
+  });
   return (
-    <AppBar {...props} position={position}>
+    <AppBar
+      className={classnames(
+        classes.appBar,
+        {
+          [classes.appBarShift]: navBarOpen
+        },
+        className
+      )}
+      position={position}
+    >
       <Toolbar>
         <IconButton
           color="inherit"

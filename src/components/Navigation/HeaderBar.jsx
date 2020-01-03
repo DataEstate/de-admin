@@ -9,11 +9,11 @@ type HeaderBarProps = {
   onHeaderNavToggle: (e: any) => void
 };
 
-export const HeaderBar: HeaderBarProps = ({
+export const HeaderBar = ({
   position = "fixed",
   onHeaderNavToggle,
   ...props
-}) => {
+}: HeaderBarProps) => {
   return (
     <AppBar {...props} position={position}>
       <Toolbar>

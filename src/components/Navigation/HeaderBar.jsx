@@ -44,9 +44,9 @@ export const HeaderBar = ({
   onHeaderNavToggle,
   navBarWidth = 240,
   navBarOpen = false,
-  className
+  className = ""
 }: HeaderBarProps) => {
-  const classes = makeStyles({
+  const classes = useStyles({
     navBarWidth
   });
   return (

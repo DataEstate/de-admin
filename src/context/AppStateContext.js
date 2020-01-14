@@ -1,7 +1,9 @@
-import React, { createContext } from "react";
-import type { AppStateContextType } from "./Types/AppStateContextType";
+// @flow
 
-export const AppStateContext = createContext({
+import React, { createContext } from "react";
+import type { AppStateType } from "./Types/AppStateType";
+
+export const AppStateContext = createContext<AppStateType>({
   navBarOpen: false
 });
 

@@ -14,8 +14,8 @@ import {
   Typography,
   CssBaseline
 } from "@material-ui/core";
-import { NavigationBar, HeaderBar, FooterBar } from "components/Navigation";
-import { propIfExists } from "helpers";
+import { NavigationBar, HeaderBar, FooterBar } from "src/components/Navigation";
+import { propIfExists } from "src/helpers";
 
 type AppProps = {
   id?: string

@@ -2,7 +2,7 @@
 
 import type { AppStateType } from "../../context/Types/AppStateType";
 
-type GetDefaultAppState = () => AppStateType;
+export type GetDefaultAppState = () => AppStateType;
 
 export const getDefaultAppState: GetDefaultAppState = () => ({
   navBarOpen: true

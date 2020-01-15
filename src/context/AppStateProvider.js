@@ -3,15 +3,17 @@
 import React, { useReducer } from "react";
 import AppStateContext from "./AppStateContext";
 
+import type { AppStateType } from "./Types/AppStateType";
+
 const { Provider } = AppStateContext;
 
 type Props = {
-  store: {},
-  children: React.Node
+  store: AppStateType,
+  children: any
 };
 
 export const AppStateProvider = ({ store, children }: Props) => {
-  return <Provider>{children}</Provider>;
+  return <Provider value={store}>{children}</Provider>;
 };
 
 export default AppStateProvider;

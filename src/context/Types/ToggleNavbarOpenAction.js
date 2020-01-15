@@ -1,8 +1,6 @@
 // @flow
 
-export type ToggleNavbarOpenAction = (
-  navBarOpen: boolean
-) => {
+export type ToggleNavbarOpenAction = {
   type: string,
   navBarOpen: boolean
 };

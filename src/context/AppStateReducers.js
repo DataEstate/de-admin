@@ -1,13 +1,13 @@
 //@flow
 
 import React from "react";
-import type { AppStateType } from "./Types/AppStateContextType";
+import type { AppStateType } from "./Types/AppStateType";
 import type { ToggleNavbarOpenAction } from "./Types/ToggleNavbarOpenAction";
 
 type AppStateActions = ToggleNavbarOpenAction;
 
 export const AppStateReducers = (
-  state: AppStateContextType,
+  state: AppStateType,
   action: AppStateActions
 ) => {
   switch (action.type) {

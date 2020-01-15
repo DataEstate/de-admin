@@ -1,10 +1,10 @@
 [ignore]
-.*/node_modules/module-deps/.*
-.*/jest/.*
+./node_modules/module-deps/.*
+./jest/.*
 
 [include]
-.*/node_modules
-.*/src
+./node_modules
+./src/**/*
 
 [libs]
 

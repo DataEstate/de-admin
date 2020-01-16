@@ -2,7 +2,7 @@
 
 import React, { useReducer } from "react";
 import AppStateContext from "./AppStateContext";
-
+import AppStateReducer from "./AppStateReducers";
 import type { AppStateType } from "./Types/AppStateType";
 
 const { Provider } = AppStateContext;
@@ -13,7 +13,17 @@ type Props = {
 };
 
 export const AppStateProvider = ({ store, children }: Props) => {
-  return <Provider value={store}>{children}</Provider>;
+  const [state, dispatch] = useReducer(AppStateReducer, store);
+  return (
+    <Provider
+      value={{
+        ...state,
+        dispatch
+      }}
+    >
+      {children}
+    </Provider>
+  );
 };
 
 export default AppStateProvider;

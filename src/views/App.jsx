@@ -6,7 +6,7 @@
  * @author Rolf Chen <rolf.chen@dataestate.com.au>
  */
 
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import classnames from "classnames";
 import {
   useTheme,
@@ -14,7 +14,9 @@ import {
   Typography,
   CssBaseline
 } from "@material-ui/core";
-import { NavigationBar, HeaderBar, FooterBar } from "src/components/Navigation";
+import { AppStateContext } from "src/context/AppStateContext";
+import { NavigationBar, HeaderBar } from "src/containers";
+import { FooterBar } from "src/components";
 import { propIfExists } from "src/helpers";
 
 type AppProps = {
@@ -58,35 +60,20 @@ const useStyles = makeStyles(theme => {
 export const App = ({ id }: AppProps) => {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const { navBarOpen, dispatch } = useContext(AppStateContext);
 
   return (
     <div className={classnames("App", classes.root)}>
       <CssBaseline />
-      <HeaderBar
-        navBarOpen={open}
-        position="fixed"
-        navBarWidth={drawerWidth}
-        onHeaderNavToggle={handleDrawerOpen}
-      />
+      <HeaderBar position="fixed" navBarWidth={drawerWidth} />
       <NavigationBar
         className="App_navigation"
-        open={open}
         variant="persistent"
         navBarWidth={drawerWidth}
-        onNavBarToggle={handleDrawerClose}
       />
       <main
         className={classnames("App_content", classes.content, {
-          [classes.contentShift]: open
+          [classes.contentShift]: navBarOpen
         })}
       >
         <div className={classes.toolbar} />

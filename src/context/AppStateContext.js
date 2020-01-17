@@ -1,10 +1,11 @@
 // @flow
 
 import React, { createContext } from "react";
-import type { AppStateType } from "./Types/AppStateType";
+import { type AppStateContextType } from "src/context/Types/AppStateContextType";
 
-export const AppStateContext = createContext<AppStateType>({
-  navBarOpen: false
+export const AppStateContext = createContext<AppStateContextType>({
+  navBarOpen: false,
+  dispatch: action => {}
 });
 
 export default AppStateContext;

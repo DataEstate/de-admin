@@ -10,3 +10,5 @@ export const toggleNavbarOpenAction: ToggleNavbarOpenActionType = navBarOpen => 
   type: "TOGGLE_NAVBAR_OPEN",
   navBarOpen
 });
+
+export default toggleNavbarOpenAction;

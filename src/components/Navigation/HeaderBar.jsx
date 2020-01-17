@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
-import type { NavigationVariantType } from "./Types/NavigationVariantType";
+import { type NavigationVariantType } from "./Types/NavigationVariantType";
 
 type HeaderBarProps = {
   position: string,

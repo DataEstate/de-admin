@@ -16,7 +16,7 @@ import {
   ChevronRight as ChevronRightIcon
 } from "@material-ui/icons";
 
-import type { NavigationVariantType } from "./Types/NavigationVariantType";
+import { type NavigationVariantType } from "./Types/NavigationVariantType";
 
 type Props = {
   className?: string,

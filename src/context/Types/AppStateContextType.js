@@ -1,5 +1,7 @@
 // @flow
 
-export type AppStateContextType = {
-  navBarOpen: boolean
+import { type AppStateType } from "src/context/Types/AppStateType";
+
+export type AppStateContextType = AppStateType & {
+  dispatch: any
 };

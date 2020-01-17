@@ -6,7 +6,7 @@
  * @author Rolf Chen <rolf.chen@dataestate.com.au>
  */
 
-import React from "react";
+import React, { useContext } from "react";
 import classnames from "classnames";
 import {
   useTheme,
@@ -14,6 +14,7 @@ import {
   Typography,
   CssBaseline
 } from "@material-ui/core";
+import { ConfigurationContext } from "src/context";
 import { SiteFrame } from "src/containers";
 import { toggleNavbarOpenAction } from "src/context/actions";
 import { propIfExists } from "src/helpers";
@@ -40,11 +41,24 @@ const useStyles = makeStyles(theme => {
 export const App = ({ id }: AppProps) => {
   const classes = useStyles();
 
+  const { site, navigation } = useContext(ConfigurationContext);
+
+  const testMenus = [
+    {
+      label: "Invoices"
+    }
+  ];
+
   return (
-    <SiteFrame title="Dashboard" navBarWidth={drawerWidth} className="App">
+    <SiteFrame
+      title={site.title}
+      navBarWidth={drawerWidth}
+      className="App"
+      menuItems={navigation.menu}
+    >
       <div>Hi, I am a website</div>
     </SiteFrame>
   );
 };
-
+[];
 export default App;

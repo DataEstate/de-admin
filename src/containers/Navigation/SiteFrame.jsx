@@ -9,13 +9,15 @@ import { NavigationBar, HeaderBar, FooterBar } from "src/components/Navigation";
 import { toggleNavbarOpenAction } from "src/context/actions";
 
 import { type NavigationVariantType } from "src/components/Navigation/Types/NavigationVariantType";
+import { type MenuItemType } from "src/components/Navigation/Types/MenuItemType";
 
 type Props = {
   children: any,
   title: string,
   variant: NavigationVariantType,
   navBarWidth: number,
-  className?: string
+  className?: string,
+  menuItems: Array<MenuItemType>
 };
 
 const useStyles = makeStyles(theme => {
@@ -47,7 +49,8 @@ export const SiteFrame = ({
   title,
   variant = "persistent",
   navBarWidth = 240,
-  className
+  className,
+  menuItems = []
 }: Props) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
   const classes = useStyles(navBarWidth);
@@ -72,6 +75,7 @@ export const SiteFrame = ({
         navBarWidth={navBarWidth}
         open={navBarOpen}
         onNavBarToggle={handleNavbarOpen}
+        menuItems={menuItems}
       />
       <main
         className={classnames("SiteFrame_content", classes.content, {

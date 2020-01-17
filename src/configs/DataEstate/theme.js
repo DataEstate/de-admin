@@ -24,7 +24,14 @@ const typography = {
     fontWeight: 500
   },
   h4: {
+    fontFamily: primaryFontFamily,
     fontWeight: 600
+  },
+  h5: {
+    fontFamily: primaryFontFamily
+  },
+  h6: {
+    fontFamily: primaryFontFamily
   }
 };
 
@@ -44,7 +51,9 @@ const palette = {
   }
 };
 
-export const dataEstateTheme = {
+export const theme = {
   typography,
   palette
 };
+
+export default theme;

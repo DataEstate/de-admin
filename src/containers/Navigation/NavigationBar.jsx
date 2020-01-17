@@ -1,6 +1,9 @@
 // @flow
 
-// @react-context-container
+/**
+ * @deprecated
+ * Good expriment, but overkill
+ */
 import React, { useContext } from "react";
 import { AppStateContext } from "src/context/AppStateContext";
 import { NavigationBar as NavigationBarComponent } from "src/components";

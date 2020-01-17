@@ -19,6 +19,7 @@ type HeaderBarProps = {
   navBarWidth: number,
   navBarOpen: boolean,
   className: string,
+  title: string,
   onHeaderNavToggle: (e: any) => void
 };
 
@@ -44,7 +45,8 @@ export const HeaderBar = ({
   onHeaderNavToggle,
   navBarWidth = 240,
   navBarOpen = false,
-  className = ""
+  className = "",
+  title = ""
 }: HeaderBarProps) => {
   const classes = useStyles({
     navBarWidth
@@ -69,7 +71,7 @@ export const HeaderBar = ({
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">Test Title</Typography>
+        <Typography variant="h6">{title}</Typography>
       </Toolbar>
     </AppBar>
   );

@@ -1,5 +1,10 @@
 // @flow
 
+/**
+ * @deprecated
+ * Good experiment...
+ */
+
 import React, { useContext } from "react";
 import { AppStateContext } from "src/context/AppStateContext";
 import { HeaderBar as HeaderBarComponent } from "src/components";

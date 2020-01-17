@@ -5,7 +5,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import { configureStore } from "./store";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-import { App } from "./views";
+import { App } from "./App";
 import { AppStateProvider, ConfigurationProvider } from "./context";
 import { getDefaultAppState, getDefaultReduxStore } from "./helpers";
 

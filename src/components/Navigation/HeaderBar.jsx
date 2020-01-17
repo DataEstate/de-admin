@@ -20,7 +20,7 @@ type HeaderBarProps = {
   navBarOpen: boolean,
   className: string,
   title: string,
-  onHeaderNavToggle: (e: any) => void
+  onHeaderNavToggle?: (e: any) => void
 };
 
 const useStyles = makeStyles(theme => ({
@@ -66,7 +66,7 @@ export const HeaderBar = ({
         <IconButton
           color="inherit"
           aria-label="open drawer"
-          onClick={onHeaderNavToggle}
+          onClick={onHeaderNavToggle ? onHeaderNavToggle : {}}
           edge="start"
         >
           <MenuIcon />

@@ -25,6 +25,12 @@ const useStyles = makeStyles(theme => {
     root: {
       display: "flex"
     },
+    drawerHeader: {
+      ...theme.mixins.toolbar,
+      display: "flex",
+      justifyContent: "flex-end",
+      padding: theme.spacing(1)
+    },
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
@@ -53,8 +59,7 @@ export const SiteFrame = ({
   menuItems = []
 }: Props) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
-  const { user, logout } = useContext(Auth0Context);
-  console.log(user);
+
   const classes = useStyles(navBarWidth);
 
   const handleNavbarOpen = () => {
@@ -62,6 +67,7 @@ export const SiteFrame = ({
   };
   return (
     <div className={classnames("SiteFrame", classes.root)}>
+      <CssBaseline />
       <HeaderBar
         position="fixed"
         navBarWidth={navBarWidth}
@@ -78,14 +84,14 @@ export const SiteFrame = ({
         onNavBarToggle={handleNavbarOpen}
         menuItems={menuItems}
       />
-      <CssBaseline />
+
       <main
         className={classnames("SiteFrame_content", classes.content, {
           [classes.contentShift]: navBarOpen
         })}
       >
+        <div className={classes.drawerHeader} />
         {children}
-        <Button onClick={() => logout({})}>Log out</Button>
       </main>
       <FooterBar />
     </div>

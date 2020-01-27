@@ -56,7 +56,7 @@ export const App = ({ id }: AppProps) => {
       className="App"
       menuItems={navigation.menu}
     >
-      <div> Logged in!</div>
+      <div>Welcome!</div>
     </SiteFrame>
   );
 };

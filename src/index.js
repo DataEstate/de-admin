@@ -20,7 +20,7 @@ const store = configureStore(getDefaultReduxStore());
 const theme = createMuiTheme(themeConfig);
 
 const onRedirectCallback = appState => {
-  history.pushState(
+  history.push(
     appState && appState.targetUrl
       ? appState.targetUrl
       : window.location.pathname

@@ -5,23 +5,25 @@ import { Provider as ReduxProvider } from "react-redux";
 import { configureStore } from "./store";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-import { App } from "./views";
-import { AppStateProvider } from "./context/AppStateProvider";
+import { App } from "./App";
+import { AppStateProvider, ConfigurationProvider } from "./context";
 import { getDefaultAppState, getDefaultReduxStore } from "./helpers";
 
-import { dataEstateTheme } from "./themes/dataEstateTheme";
+import { theme as themeConfig, config } from "./configs/DataEstate";
 
 const appContainer = document.getElementById("root");
 const store = configureStore(getDefaultReduxStore());
-const theme = createMuiTheme(dataEstateTheme);
+const theme = createMuiTheme(themeConfig);
 
 render(
   <ThemeProvider theme={theme}>
-    <AppStateProvider store={getDefaultAppState()}>
-      <ReduxProvider store={store}>
-        <App />
-      </ReduxProvider>
-    </AppStateProvider>
+    <ConfigurationProvider config={config}>
+      <AppStateProvider store={getDefaultAppState()}>
+        <ReduxProvider store={store}>
+          <App />
+        </ReduxProvider>
+      </AppStateProvider>
+    </ConfigurationProvider>
   </ThemeProvider>,
   appContainer
 );

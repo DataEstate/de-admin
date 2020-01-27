@@ -4,9 +4,8 @@ import React from "react";
 import classnames from "classnames";
 import {
   Drawer,
-  List,
-  ListItem,
-  ListItemText,
+  MenuList,
+  MenuItem,
   IconButton,
   useTheme,
   makeStyles
@@ -17,9 +16,11 @@ import {
 } from "@material-ui/icons";
 
 import { type NavigationVariantType } from "./Types/NavigationVariantType";
+import { type MenuItemType } from "./Types/MenuItemType";
 
 type Props = {
   className?: string,
+  menuItems: Array<MenuItemType>,
   variant: NavigationVariantType,
   navBarWidth: number,
   open: boolean,
@@ -48,7 +49,8 @@ export const NavigationBar = ({
   variant = "persistent",
   open = true,
   navBarWidth = 240,
-  onNavBarToggle
+  onNavBarToggle,
+  menuItems = []
 }: Props) => {
   const theme = useTheme();
   const classes = useStyles({
@@ -57,7 +59,6 @@ export const NavigationBar = ({
   const childComponentClasses = {
     paper: classes.drawerPaper
   };
-
   return (
     <div className="NavigationBar">
       <Drawer
@@ -77,11 +78,13 @@ export const NavigationBar = ({
           </IconButton>
         </header>
         <nav className="NavigationBar__nav">
-          <List>
-            <ListItem>
-              <ListItemText>Menu Item 1</ListItemText>
-            </ListItem>
-          </List>
+          {menuItems && (
+            <MenuList>
+              {menuItems.map((menu, idx) => {
+                return <MenuItem key={idx}>{menu.label}</MenuItem>;
+              })}
+            </MenuList>
+          )}
         </nav>
       </Drawer>
     </div>

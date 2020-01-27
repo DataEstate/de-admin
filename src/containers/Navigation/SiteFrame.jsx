@@ -2,9 +2,9 @@
 
 import React, { useContext } from "react";
 import classnames from "classnames";
-import { makeStyles, CssBaseline } from "@material-ui/core";
+import { makeStyles, CssBaseline, Button } from "@material-ui/core";
 
-import { AppStateContext } from "src/context/AppStateContext";
+import { AppStateContext, Auth0Context } from "src/context";
 import { NavigationBar, HeaderBar, FooterBar } from "src/components/Navigation";
 import { toggleNavbarOpenAction } from "src/context/actions";
 
@@ -53,6 +53,8 @@ export const SiteFrame = ({
   menuItems = []
 }: Props) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
+  const { user, logout } = useContext(Auth0Context);
+  console.log(user);
   const classes = useStyles(navBarWidth);
 
   const handleNavbarOpen = () => {
@@ -60,7 +62,6 @@ export const SiteFrame = ({
   };
   return (
     <div className={classnames("SiteFrame", classes.root)}>
-      <CssBaseline />
       <HeaderBar
         position="fixed"
         navBarWidth={navBarWidth}
@@ -77,12 +78,14 @@ export const SiteFrame = ({
         onNavBarToggle={handleNavbarOpen}
         menuItems={menuItems}
       />
+      <CssBaseline />
       <main
         className={classnames("SiteFrame_content", classes.content, {
           [classes.contentShift]: navBarOpen
         })}
       >
         {children}
+        <Button onClick={() => logout({})}>Log out</Button>
       </main>
       <FooterBar />
     </div>

@@ -19,6 +19,8 @@ import { ConfigurationContext, Auth0Context } from "src/context";
 import { SiteFrame } from "src/containers";
 import { toggleNavbarOpenAction } from "src/context/actions";
 import { propIfExists } from "src/helpers";
+//Demo
+import Growcom from "src/screens/Growcom";
 
 type AppProps = {
   id?: string
@@ -56,7 +58,7 @@ export const App = ({ id }: AppProps) => {
       className="App"
       menuItems={navigation.menu}
     >
-      <div>Welcome!</div>
+      <Growcom />
     </SiteFrame>
   );
 };

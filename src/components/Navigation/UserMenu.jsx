@@ -21,7 +21,6 @@ export const UserMenu = ({ menuItems = [] }: Props) => {
   const menuIsOpen = Boolean(anchorEl);
   const { user = {}, logout } = useContext(Auth0Context);
   const { name: userName, picture } = user;
-  console.log(user);
   const handleMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };

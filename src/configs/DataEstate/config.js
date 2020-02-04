@@ -10,10 +10,10 @@ export const config: ConfigurationStateType = {
   navigation: {
     menu: [
       {
-        label: "Estates"
+        label: "Businesses"
       },
       {
-        label: "Users"
+        label: "PBU"
       },
       {
         label: "Billing & Subscription"

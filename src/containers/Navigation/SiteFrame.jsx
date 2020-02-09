@@ -2,9 +2,9 @@
 
 import React, { useContext } from "react";
 import classnames from "classnames";
-import { makeStyles, CssBaseline } from "@material-ui/core";
+import { makeStyles, CssBaseline, Button } from "@material-ui/core";
 
-import { AppStateContext } from "src/context/AppStateContext";
+import { AppStateContext, Auth0Context } from "src/context";
 import { NavigationBar, HeaderBar, FooterBar } from "src/components/Navigation";
 import { toggleNavbarOpenAction } from "src/context/actions";
 
@@ -24,6 +24,12 @@ const useStyles = makeStyles(theme => {
   return {
     root: {
       display: "flex"
+    },
+    drawerHeader: {
+      ...theme.mixins.toolbar,
+      display: "flex",
+      justifyContent: "flex-end",
+      padding: theme.spacing(1)
     },
     content: {
       flexGrow: 1,
@@ -53,6 +59,7 @@ export const SiteFrame = ({
   menuItems = []
 }: Props) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
+
   const classes = useStyles(navBarWidth);
 
   const handleNavbarOpen = () => {
@@ -77,11 +84,13 @@ export const SiteFrame = ({
         onNavBarToggle={handleNavbarOpen}
         menuItems={menuItems}
       />
+
       <main
         className={classnames("SiteFrame_content", classes.content, {
           [classes.contentShift]: navBarOpen
         })}
       >
+        <div className={classes.drawerHeader} />
         {children}
       </main>
       <FooterBar />

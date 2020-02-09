@@ -12,9 +12,10 @@ import {
   useTheme,
   makeStyles,
   Typography,
-  CssBaseline
+  CssBaseline,
+  Button
 } from "@material-ui/core";
-import { ConfigurationContext } from "src/context";
+import { ConfigurationContext, Auth0Context } from "src/context";
 import { SiteFrame } from "src/containers";
 import { toggleNavbarOpenAction } from "src/context/actions";
 import { propIfExists } from "src/helpers";
@@ -42,21 +43,20 @@ export const App = ({ id }: AppProps) => {
   const classes = useStyles();
 
   const { site, navigation } = useContext(ConfigurationContext);
-
-  const testMenus = [
-    {
-      label: "Invoices"
-    }
-  ];
-
-  return (
+  const { isAuthenticated, loginWithRedirect } = useContext(Auth0Context);
+  return !isAuthenticated ? (
+    <Typography>
+      Unauthorized, please log in below
+      <Button onClick={() => loginWithRedirect({})}>Log in</Button>
+    </Typography>
+  ) : (
     <SiteFrame
       title={site.title}
       navBarWidth={drawerWidth}
       className="App"
       menuItems={navigation.menu}
     >
-      <div>Hi, I am a website</div>
+      <div>Welcome!</div>
     </SiteFrame>
   );
 };

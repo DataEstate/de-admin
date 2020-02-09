@@ -10,6 +10,7 @@ import {
   makeStyles
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { UserMenu } from "./UserMenu";
 
 import { type NavigationVariantType } from "./Types/NavigationVariantType";
 
@@ -37,7 +38,10 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
-  })
+  }),
+  spacer: {
+    flexGrow: 1
+  }
 }));
 
 export const HeaderBar = ({
@@ -72,6 +76,8 @@ export const HeaderBar = ({
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">{title}</Typography>
+        <div className={classes.spacer} />
+        <UserMenu />
       </Toolbar>
     </AppBar>
   );

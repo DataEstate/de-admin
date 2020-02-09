@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import createAuth0Client from "@auth0/";
+import createAuth0Client from "@auth0/auth0-spa-js";
 
 import Auth0Context from "./Auth0Context";
 
@@ -18,6 +18,7 @@ export const Auth0Provider = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   ...initOptions
 }: Props) => {
+  // @TODO: React hook typing?
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [auth0Client, setAuth0Client] = useState();
@@ -27,7 +28,7 @@ export const Auth0Provider = ({
   useEffect(() => {
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client(initOptions);
-      setAuth0(auth0FromHook);
+      setAuth0Client(auth0FromHook);
 
       if (
         window.location.search.includes("code=") &&
@@ -41,7 +42,7 @@ export const Auth0Provider = ({
 
       setIsAuthenticated(appIsAuthenticated);
 
-      if (isAuthenticated) {
+      if (appIsAuthenticated) {
         const user = await auth0FromHook.getUser();
         setUser(user);
       }
@@ -74,6 +75,7 @@ export const Auth0Provider = ({
     setIsAuthenticated(true);
     setUser(user);
   };
+  // @TODO - Add flow typing
   return (
     <Provider
       value={{
@@ -94,3 +96,5 @@ export const Auth0Provider = ({
     </Provider>
   );
 };
+
+export default Auth0Provider;

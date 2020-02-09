@@ -4,7 +4,7 @@ import { type ConfigurationStateType } from "src/context/Types/ConfigurationtSta
 
 export const config: ConfigurationStateType = {
   site: {
-    title: "Data Estate Manager",
+    title: "Data Estate",
     tagline: "Manage your data today"
   },
   navigation: {

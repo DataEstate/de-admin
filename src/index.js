@@ -34,6 +34,7 @@ render(
         <Auth0Provider
           domain={authConfig.domain}
           client_id={authConfig.client_id}
+          scope={authConfig.scope}
           redirect_uri={authConfig.redirect_uri}
           onRedirectCallback={onRedirectCallback}
         >

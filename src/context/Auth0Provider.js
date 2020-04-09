@@ -18,6 +18,7 @@ export const Auth0Provider = ({
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   ...initOptions
 }: Props) => {
+  console.log(initOptions);
   // @TODO: React hook typing?
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
@@ -28,6 +29,7 @@ export const Auth0Provider = ({
   useEffect(() => {
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client(initOptions);
+      console.log(auth0FromHook);
       setAuth0Client(auth0FromHook);
 
       if (
@@ -49,7 +51,7 @@ export const Auth0Provider = ({
 
       setLoading(false);
     };
-
+    console.log("Initialising");
     initAuth0();
   }, []);
 

@@ -20,7 +20,7 @@ import { SiteFrame } from "src/containers";
 import { toggleNavbarOpenAction } from "src/context/actions";
 import { propIfExists } from "src/helpers";
 //Demo
-import FairFarms from "src/screens/FairFarms/FairFarms";
+import { Billing } from "src/screens";
 
 type AppProps = {
   id?: string
@@ -58,7 +58,7 @@ export const App = ({ id }: AppProps) => {
       className="App"
       menuItems={navigation.menu}
     >
-      <FairFarms />
+      <Billing />
     </SiteFrame>
   );
 };

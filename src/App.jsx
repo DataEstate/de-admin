@@ -6,36 +6,32 @@
  * @author Rolf Chen <rolf.chen@dataestate.com.au>
  */
 
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import classnames from "classnames";
-import {
-  useTheme,
-  makeStyles,
-  Typography,
-  CssBaseline,
-  Button
-} from "@material-ui/core";
+import { makeStyles, Typography, Button } from "@material-ui/core";
 import { ConfigurationContext, Auth0Context } from "src/context";
+import { LoginScreen } from "src/screens";
 import { SiteFrame } from "src/containers";
 import { toggleNavbarOpenAction } from "src/context/actions";
-import { propIfExists } from "src/helpers";
-
+import { Route, Switch } from "react-router-dom";
+import { PrivateRoute, GenericInterstitial } from "src/components";
+import Login from "./screens/Login";
 type AppProps = {
-  id?: string
+  id?: string,
 };
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   return {
     drawer: {
       width: drawerWidth,
-      flexShrink: 0
+      flexShrink: 0,
     },
     drawerPaper: {
-      width: drawerWidth
+      width: drawerWidth,
     },
-    toolbar: theme.mixins.toolbar
+    toolbar: theme.mixins.toolbar,
   };
 });
 
@@ -44,21 +40,29 @@ export const App = ({ id }: AppProps) => {
 
   const { site, navigation } = useContext(ConfigurationContext);
   const { isAuthenticated, loginWithRedirect } = useContext(Auth0Context);
-  return !isAuthenticated ? (
-    <Typography>
-      Unauthorized, please log in below
-      <Button onClick={() => loginWithRedirect({})}>Log in</Button>
-    </Typography>
+
+  return isAuthenticated === undefined ? (
+    <GenericInterstitial />
   ) : (
-    <SiteFrame
-      title={site.title}
-      navBarWidth={drawerWidth}
-      className="App"
-      menuItems={navigation.menu}
-    >
-      <div>Welcome!</div>
-    </SiteFrame>
+    <Fragment>
+      <Switch>
+        <Route path="/login">
+          <LoginScreen />
+        </Route>
+        <PrivateRoute path="/">
+          <SiteFrame
+            title={site.title}
+            navBarWidth={drawerWidth}
+            className="App"
+            menuItems={navigation.menu}
+          >
+            <div>Welcome!</div>
+          </SiteFrame>
+          ,
+        </PrivateRoute>
+      </Switch>
+    </Fragment>
   );
 };
-[];
+
 export default App;

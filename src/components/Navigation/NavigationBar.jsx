@@ -8,40 +8,40 @@ import {
   MenuItem,
   IconButton,
   useTheme,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import {
   ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon
+  ChevronRight as ChevronRightIcon,
 } from "@material-ui/icons";
 
-import { type NavigationVariantType } from "./Types/NavigationVariantType";
-import { type MenuItemType } from "./Types/MenuItemType";
+import type { NavigationVariantType } from "./Types/NavigationVariantType";
+import type { MenuItemType } from "./Types/MenuItemType";
 
 type Props = {
   className?: string,
-  menuItems: Array<MenuItemType>,
-  variant: NavigationVariantType,
-  navBarWidth: number,
-  open: boolean,
-  onNavBarToggle: (e: any) => void
+  menuItems?: Array<MenuItemType>,
+  variant?: NavigationVariantType,
+  navBarWidth?: number,
+  open?: boolean,
+  onNavBarToggle: (e: any) => void,
 };
 // @reference - https://material-ui.com/styles/basics/#hook-api
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   drawer: ({ navBarWidth }) => ({
     width: navBarWidth,
-    flexShrink: 0
+    flexShrink: 0,
   }),
   drawerHeader: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   drawerPaper: ({ navBarWidth }) => ({
-    width: navBarWidth
-  })
+    width: navBarWidth,
+  }),
 }));
 
 export const NavigationBar = ({
@@ -50,14 +50,14 @@ export const NavigationBar = ({
   open = true,
   navBarWidth = 240,
   onNavBarToggle,
-  menuItems = []
+  menuItems = [],
 }: Props) => {
   const theme = useTheme();
   const classes = useStyles({
-    navBarWidth
+    navBarWidth,
   });
   const childComponentClasses = {
-    paper: classes.drawerPaper
+    paper: classes.drawerPaper,
   };
   return (
     <div className="NavigationBar">

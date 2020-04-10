@@ -9,7 +9,7 @@ const { Provider } = AppStateContext;
 
 type Props = {
   store: AppStateType,
-  children: any
+  children: any,
 };
 
 export const AppStateProvider = ({ store, children }: Props) => {
@@ -18,7 +18,7 @@ export const AppStateProvider = ({ store, children }: Props) => {
     <Provider
       value={{
         ...state,
-        dispatch
+        dispatch,
       }}
     >
       {children}

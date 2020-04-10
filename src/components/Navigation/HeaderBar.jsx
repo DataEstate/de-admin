@@ -7,7 +7,7 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { UserMenu } from "./UserMenu";
@@ -15,33 +15,33 @@ import { UserMenu } from "./UserMenu";
 import { type NavigationVariantType } from "./Types/NavigationVariantType";
 
 type HeaderBarProps = {
-  position: string,
-  variant: NavigationVariantType,
-  navBarWidth: number,
-  navBarOpen: boolean,
-  className: string,
-  title: string,
-  onHeaderNavToggle?: (e: any) => void
+  position?: string,
+  variant?: NavigationVariantType,
+  navBarWidth?: number,
+  navBarOpen?: boolean,
+  className?: string,
+  title?: string,
+  onHeaderNavToggle?: (e: any) => void,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: ({ navBarWidth }) => ({
     width: `calc(100% - ${navBarWidth}px)`,
     marginLeft: navBarWidth,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   }),
   spacer: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 export const HeaderBar = ({
@@ -50,17 +50,17 @@ export const HeaderBar = ({
   navBarWidth = 240,
   navBarOpen = false,
   className = "",
-  title = ""
+  title = "",
 }: HeaderBarProps) => {
   const classes = useStyles({
-    navBarWidth
+    navBarWidth,
   });
   return (
     <AppBar
       className={classnames(
         classes.appBar,
         {
-          [classes.appBarShift]: navBarOpen
+          [classes.appBarShift]: navBarOpen,
         },
         className
       )}

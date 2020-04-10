@@ -6,7 +6,7 @@
  */
 import React, { useContext } from "react";
 import { AppStateContext } from "src/context/AppStateContext";
-import { NavigationBar as NavigationBarComponent } from "src/components";
+import { NavigationBar as NavigationBarComponent } from "src/components/Navigation";
 import { toggleNavbarOpenAction } from "src/context/actions";
 
 import { type NavigationVariantType } from "src/components/Navigation/Types/NavigationVariantType";
@@ -14,13 +14,13 @@ import { type NavigationVariantType } from "src/components/Navigation/Types/Navi
 export type Props = {
   className?: string,
   variant: NavigationVariantType,
-  navBarWidth: number
+  navBarWidth: number,
 };
 
 export const NavigationBar = ({
   className,
   variant = "persistent",
-  navBarWidth
+  navBarWidth,
 }: Props) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
 

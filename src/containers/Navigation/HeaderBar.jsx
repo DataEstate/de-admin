@@ -7,7 +7,7 @@
 
 import React, { useContext } from "react";
 import { AppStateContext } from "src/context/AppStateContext";
-import { HeaderBar as HeaderBarComponent } from "src/components";
+import { HeaderBar as HeaderBarComponent } from "src/components/Navigation";
 import { toggleNavbarOpenAction } from "src/context/actions";
 
 import { type NavigationVariantType } from "src/components/Navigation/Types/NavigationVariantType";
@@ -16,13 +16,13 @@ export type HeaderBarContainerProps = {
   position: string,
   variant: NavigationVariantType,
   navBarWidth: number,
-  className: string
+  className: string,
 };
 
 export const HeaderBar = ({
   position = "fixed",
   navBarWidth,
-  className
+  className,
 }: HeaderBarContainerProps) => {
   const { navBarOpen, dispatch } = useContext(AppStateContext);
 

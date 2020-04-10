@@ -1,4 +1,7 @@
 // @flow
+/**
+ * @obsolete
+ */
 
 type PropIfExists = (propName: string, value?: any) => {};
 
